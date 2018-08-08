@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Certifree - Verify Your Website/Software</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=0.9, shrink-to-fit=no">
+		<meta name="description" content="Newbie developers struggle to convince people to download/install their software because nobody trusts that it's not malware. Certifree gives out certificates that say your stuff is confirmed virus-free!">
+		<meta name="robots" content="index">
+
+		<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<script type="application/javascript" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script type="application/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+
+		<script type="application/javascript" src="https://smtpjs.com/v2/smtp.js"></script>
+
+		<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+		<script type="application/javascript" src="script.js"></script>
+
+		<script type="application/javascript">
+			// TOKEN : 26921ecd-0cb1-4afe-9656-bed1a107e335
+      // PASSWORD : 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
+
+			$(document).ready(() => {
+
+				$('.action-send').on('click', (event) => {
+					var pressedButton = $(event.target);
+					var form = pressedButton.parents('form');
+					var mailingAddress = $('.global-e-mail').val();
+
+					if (!(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/gmi).test(mailingAddress)) {
+						return $('#invalid').modal();
+					}
+
+					pressedButton.prop('disabled', true);
+					window.setTimeout(() => {
+						pressedButton.prop('disabled', false);
+					}, 10000);
+
+					var loadingSpinner = pressedButton.find('.cogwheel');
+					loadingSpinner.removeClass('d-none');
+
+					var info = {
+						type : form.find('.digital-app-kind').val(),
+						address : form.find('.url').val(),
+						name : form.find('.app-name').val(),
+						company : form.find('.company-name').val(),
+						file : form.find('.file-name').val(),
+						description : form.find('.summary').val()
+					};
+					var str = JSON.stringify(info);
+					var filename = info.file === '*NONE*' ? '' : `
+						<dt>Filename:</dt>
+						<dd>${info.file}</dd>
+					`;
+					$('#type-replace').text(info.type);
+					$('#e-mail-replace').text(mailingAddress);
+					Email.send(
+						"Certifree <certifree-team@certifree-ews-official.org>",
+						mailingAddress,
+						`Certifree - Your ${info.type} Passed Review`,
+						`
+							<!DOCTYPE html>
+							<html>
+								<head>
+									<title>Certifree - Your ${info.type} Passed Review</title>
+									<meta charset="UTF-8">
+									<style type="text/css">
+										html, body {
+											font-family: sans-serif;
+											font-size: 17px;
+											color: #123;
+											font-weight: 300;
+											background: #28a745;
+										}
+										pre {
+											padding: 1rem;
+											background: #eee;
+											border-radius: 0.5rem;
+											border: 1px solid silver;
+										}
+										p {
+											margin: 1rem 0;
+										}
+										h1 {
+											margin: 0;
+										}
+										h1 {
+											font-size: 2rem;
+											font-weight: 600;
+										}
+										small {
+											font-size: 0.75rem;
+											color: gray;
+										}
+										code {
+											font-family: monospace;
+											overflow-wrap: break-word;
+											word-break: break-all;
+										}
+										code, code a {
+											color: #f368e0 !important;
+											text-decoration: none;
+										}
+										main {
+											max-width: 800px;
+											margin: 1rem auto;
+											background: white;
+											padding: 3rem;
+										}
+									</style>
+								</head>
+								<body>
+									<main>
+										<h1>&#10004; Congratulations! We tested ${info.name} (${share(info)}) and confirmed that it was 100% safe. &#10004;</h1>
+										<p>
+											Here's the embed code for your EWS "VERIFIED SAFE &amp; SECURE" badge. Users are shown a full-page certificate when they click on the image.
+										</p>
+										<pre><code>&lt;a href="https://certifree.github.io/certification?crypto=${encodeURIComponent(CryptoJS.AES.encrypt(str, key))}"&gt;&lt;img alt="VERIFIED SAFE &amp;amp; SECURE" src="//certifree.github.io/picture.png" width="240" height="80"&gt;&lt;/a&gt;</code></pre>
+										<p>
+											Double-check the details that you've entered:
+										</p>
+										<dl>
+											<dt>Product:</dt>
+										  <dd>${info.type}</dd>
+										  <dt>Web Address:</dt>
+										  <dd>${info.address}</dd>
+										  <dt>Company/Developer:</dt>
+										  <dd>${info.company}</dd>
+										  <dt>Name:</dt>
+										  <dd>${info.name}</dd>
+										  <dt>Summary:</dt>
+										  <dd>${info.description}</dd>
+										  ${filename}
+										</dl>
+										<hr>
+										<footer>
+											<p>
+												<em>Thanks for using Certifree!</em>
+											</p>
+											<small>If you have no clue about what this is, please ignore/disregard this e-mail. Someone probably gave us an incorrect address.</small>
+										</footer>
+									</main>
+								</body>
+							</html>
+						`,
+						{
+							token : "26921ecd-0cb1-4afe-9656-bed1a107e335",
+							callback : () => {
+								loadingSpinner.addClass('d-none');
+								$('#modal').modal();
+								form.trigger('reset');
+							}
+						}
+					);
+				});
+			});
+		</script>
+		<style type="text/css">
+			.minnie {
+				min-height: 25vw;
+			}
+			.minnie * {
+				background-position: center center;
+				background-size: cover;
+			}
+			@media (max-width: 575.98px) {
+				.col-6 .container {
+					/* PASS */
+				}
+			}
+			@media (min-width: 576px) and (max-width: 767.98px) {
+				.col-6 .container {
+					max-width: 270px;
+				}
+			}
+			@media (min-width: 768px) and (max-width: 991.98px) {
+				.col-6 .container {
+					max-width: 360px;
+				}
+			}
+			@media (min-width: 992px) and (max-width: 1199.98px) {
+				.col-6 .container {
+					max-width: 480px;
+				}
+			}
+			@media (min-width: 1200px) {
+				.col-6 .container {
+					max-width: 570px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="modal fade" id="invalid" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Houston, we've had a problem!</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        You entered an invalid e-mail address.
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">What's up?</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        We'll review your <span id='type-replace'></span> within 24 hours. If it passes, you (<span id='e-mail-replace'></span>) should recieve an e-mail from team@certifree.org containing your "VERIFIED SAFE &amp; SECURE" snippet.
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<header class="navbar navbar-dark bg-success text-white px-0">
+			<div class="container d-flex justify-content-center">
+			  <span class="navbar-brand">
+			    <i class="fas fa-check-circle"></i>
+			    <strong>Certifree</strong>
+			    Easy Web Security
+			  </span>
+			 </div>
+		</header>
+		<section>
+			<div class="row no-gutters d-flex align-items-center minnie">
+				<div class="col-6 align-self-stretch" style="background-image: url('Stock1.jpg');"></div>
+				<div class='col-6'>
+					<div class='container mr-0 pr-5 pt-5 pb-5'>
+						<h1 class='display-4'>Prove to your customers that your services are safe</h1>
+						<p class="lead">
+							Certifree is the simplest online product verification system out there!
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="row no-gutters d-flex align-items-center minnie">
+				<div class='col-6'>
+					<div class='container ml-0 pl-5 pt-5 pb-5'>
+						<h2>Web users today are ultra-smart when it comes to security</h2>
+						<p>
+							In 2018, basically all web users are tech-savvy enough to know not to download random shit or give their social security number to some spam site. Problem is, what about legitimate software developers? Small online companies lose a great portion of their potential user base because their products appear "sketchy." You can't just put a padlock icon on your website - that tactic won't fool anyone. So what can software developers and webmasters do to convince people that their products/services are indeed no-scam, totally legit?
+						</p>
+						<p>
+							Introducing Certifree! We'll check your website/application for malware and scams. If we don't find any bad stuff, we'll give you a verified, confirmed security certificate that you can stick on your website. Your customers will see that badge and think, "This shit is safe AF! I'm going to check it out." Certifree is kind of like those "USDA Approved Organic" seals on food. People are more likely to buy when they know something is safe.
+						</p>
+					</div>
+				</div>
+				<div class="col-6 align-self-stretch" style="background-image: url('Stock2.jpeg');"></div>
+			</div>
+		</section>
+		<section class="py-5 bg-light">
+			<div class="container">
+				<div class="row">
+					<div class="col-4 text-center">
+						<img src="Smile.png" class='img-fluid mx-auto d-block mb-3'>
+						<h3>Convenient</h3>
+						<p class="lead mb-0">
+							Certifree is so easy to use for developers!
+						</p>
+					</div>
+					<div class="col-4 text-center">
+						<img src="Docs.png" class='img-fluid mx-auto d-block mb-3'>
+						<h3>Informative</h3>
+						<p class="lead mb-0">
+							People can click on the verified tag to read a comprehensive certificate that lists useful info about the verified product.
+						</p>
+					</div>
+					<div class='col-4 text-center'>
+						<img src="Check.png" class='img-fluid mx-auto d-block mb-3'>
+						<h3>Trusted</h3>
+						<p class="lead mb-0">
+							People recogonize Certifree's "VERIFIED SAFE &amp; SECURE" shield as a symbol of trust.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="py-5 bg-success text-white">
+			<div class="container">
+				<h2 class="text-center">How it works</h2>
+				<ol>
+					<li>You enter your product's details and your e-mail address in the form below.</li>
+					<li>You press submit.</li>
+					<li>We investigate your product's contents to make sure that there's no malware.</li>
+					<li>We send you an e-mail to give you your "VERIFIED SAFE &amp; SECURE" badge and certificate.</li>
+					<li>You copy the embed code and paste it into your website.</li>
+					<li>Your customers are convinced that your product/service is totally legit, no-scam!</li>
+				</ol>
+				<p class="mb-0 text-center lead">
+					Yup, it's super easy!
+				</p>
+			</div>
+		</section>
+		<section class='py-5'>
+			<div class="container">
+				<h2 class="text-center">Try it free</h2>
+				<form method="GET" action="#">
+					<div class="form-group">
+						<label class="form-label">YOUR E-MAIL ADDRESS</label>
+						<input type="email" class="form-control global-e-mail" placeholder="Ex: easy.web.security@mail.com">
+						<small class="form-text text-muted">
+						  Please enter a valid e-mail address. And only use your own e-mail! If you troll us by typing someone else's e-mail, they will recieve your security badge. Not a good idea!
+						</small>
+					</div>
+				</form>
+				<label class="form-label">What do you want us to verify?</label>
+			  <ul class="nav nav-tabs mb-0" role="tablist">
+			    <li class="nav-item">
+			    	<a class="nav-item nav-link active" id="a-tab" data-toggle="tab" href="#a" role="tab" aria-controls="nav-home">Website</a>
+			    </li>
+			    <li class="nav-item">
+			    	<a class="nav-item nav-link" id="b-tab" data-toggle="tab" href="#b" role="tab" aria-controls="nav-profile">Software</a>
+			    </li>
+			  </ul>
+				<div class="tab-content pt-3" id="nav-tabContent">
+				  <div class="tab-pane fade show active" id="a" role="tabpanel" aria-labelledby="nav-home-tab">
+				  	<form method="GET" action="#">
+				  		<input type="hidden" value="*NONE*" class="file-name">
+							<input type="hidden" value='website' class='digital-app-kind'>
+							<div class="form-group">
+								<label class="form-label">COMPANY/DEVELOPER</label>
+								<input maxlength="100" type="text" class="form-control company-name" placeholder="Ex: a random homo sapien">
+							</div>
+							<div class="form-group">
+								<label class="form-label">WEBSITE NAME</label>
+								<input maxlength="100" type="text" class="form-control app-name" placeholder="Ex: Certifree">
+							</div>
+							<div class="form-group">
+								<label class="form-label">WEBSITE URI</label>
+								<input maxlength="2000" type="url" class="form-control url" placeholder="Ex: https://certifree.github.io">
+							</div>
+							<div class="form-group">
+								<label class="form-label">DESCRIPTION</label>
+								<textarea maxlength="500" rows="3" class="form-control summary" placeholder="Summarize what your website does in a few sentences."></textarea>
+							</div>
+							<div class='text-center'>
+								<button type="button" class="btn btn-lg btn-success action-send">Request Website Verification<span class="cogwheel d-none">&#8199;<i class="fa fa-cog fa-spin"></i></span></button>
+							</div>
+						</form>
+				  </div>
+				  <div class="tab-pane fade" id="b" role="tabpanel" aria-labelledby="nav-profile-tab">
+				  	<form method="GET" action="#">
+				  		<input type="hidden" value='software' class='digital-app-kind'>
+							<div class="form-group">
+								<label class="form-label">COMPANY/DEVELOPER</label>
+								<input maxlength="100" type="text" class="form-control company-name" placeholder="Ex: a random homo sapien">
+							</div>
+							<div class="form-group">
+								<label class="form-label">PROGRAM NAME</label>
+								<input maxlength="100" type="text" class="form-control app-name" placeholder="Ex: Certifree">
+							</div>
+							<div class="form-group">
+								<label class="form-label">DOWNLOAD URI</label>
+								<input maxlength="2000" type="url" class="form-control url" placeholder="Ex: https://certifree.github.io">
+							</div>
+							<div class="form-group">
+								<label class="form-label">DESCRIPTION</label>
+								<textarea maxlength="500" rows="3" class="form-control summary" placeholder="Summarize what your software does in a few sentences."></textarea>
+							</div>
+							<div class="form-group">
+								<label class="form-label">FILENAME</label>
+								<input maxlength="250" type="text" class="form-control file-name" placeholder="Ex: EpicApp.exe">
+							</div>
+							<div class='text-center'>
+								<button type="button" class="btn btn-lg btn-success action-send">Request Application Verification<span class="cogwheel d-none">&#8199;<i class="fa fa-cog fa-spin"></i></span></button>
+							</div>
+						</form>
+				  </div>
+				</div>
+			</div>
+		</section>
+	  <footer class="py-5 text-center bg-light">
+	  	<div class="container">
+	  		<ul class="list-inline">
+	  			<li class="list-inline-item mr-3">
+	  				<a href="#">Contact Us</a>
+	  			</li>
+	  			<li class="list-inline-item mr-3">
+	  				<a href="#">Privacy Policy</a>
+	  			</li>
+	  			<li class="list-inline-item mr-0">
+	  				<a href="#">Terms of Use</a>
+	  			</li>
+	  		</ul>
+	  		<p class="text-muted mb-0">&copy; Copyright 2018 Certifree</p>
+	  	</div>
+	  </footer>
+
+	  <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async type="application/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-123661131-1"></script>
+		<script type="application/javascript">
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		  gtag('config', 'UA-123661131-1');
+		</script>
+	</body>
+</html>
