@@ -1,0 +1,5 @@
+* {
+	hyphens: auto;
+	font-kerning: normal;
+	hanging-punctuation: first force-end last;
+}

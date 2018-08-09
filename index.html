@@ -14,6 +14,8 @@
 
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
+		<link rel="stylesheet" href="user-styles-different-from-other-user-styles-missing-1-property.css">
+
 		<script type="application/javascript" src="https://smtpjs.com/v2/smtp.js"></script>
 
 		<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
@@ -24,7 +26,16 @@
 			// TOKEN : 26921ecd-0cb1-4afe-9656-bed1a107e335
       // PASSWORD : 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
 
+      const resize = () => {
+      	var autoSizers = $('.minnie');
+      	autoSizers.css('min-height', (index, value) => {
+      		return Math.round($(autoSizers.get(index)).width() / 2) + 'px';
+      	});
+      }
+
 			$(document).ready(() => {
+				resize();
+				$(window).on('resize', resize);
 
 				$('.action-send').on('click', (event) => {
 					var pressedButton = $(event.target);
@@ -161,34 +172,28 @@
 		</script>
 		<style type="text/css">
 			.minnie {
-				min-height: 25vw;
-			}
-			.minnie * {
 				background-position: center center;
 				background-size: cover;
 			}
-			@media (max-width: 575.98px) {
-				.col-6 .container {
-					/* PASS */
-				}
-			}
-			@media (min-width: 576px) and (max-width: 767.98px) {
-				.col-6 .container {
-					max-width: 270px;
+			@media (max-width: 767.98px) {
+				.col-md-6 .container {
+					margin-left: auto !important;
+					margin-right: auto !important;
+					text-align: left !important;
 				}
 			}
 			@media (min-width: 768px) and (max-width: 991.98px) {
-				.col-6 .container {
+				.col-md-6 .container {
 					max-width: 360px;
 				}
 			}
 			@media (min-width: 992px) and (max-width: 1199.98px) {
-				.col-6 .container {
+				.col-md-6 .container {
 					max-width: 480px;
 				}
 			}
 			@media (min-width: 1200px) {
-				.col-6 .container {
+				.col-md-6 .container {
 					max-width: 570px;
 				}
 			}
@@ -249,20 +254,20 @@
 			 </div>
 		</header>
 		<section>
-			<div class="row no-gutters d-flex align-items-center minnie">
-				<div class="col-6 align-self-stretch" style="background-image: url('Stock1.jpg');"></div>
-				<div class='col-6'>
-					<div class='container mr-0 pr-5 pt-5 pb-5'>
+			<div class="row no-gutters d-flex align-items-center flex-row-reverse">
+				<div class='col-md-6'>
+					<div class='container ml-0 pl-5 pt-5 pb-5 text-right'>
 						<h1 class='display-4'>Prove to your customers that your services are safe</h1>
 						<p class="lead">
 							Verifuse is the simplest online product verification system out there!
 						</p>
 					</div>
 				</div>
+				<div class="col-md-6 align-self-stretch minnie" style="background-image: url('Stock1.jpg');"></div>
 			</div>
-			<div class="row no-gutters d-flex align-items-center minnie">
-				<div class='col-6'>
-					<div class='container ml-0 pl-5 pt-5 pb-5'>
+			<div class="row no-gutters d-flex align-items-center">
+				<div class='col-md-6'>
+					<div class='container mr-0 pr-5 pt-5 pb-5 text-left'>
 						<h2>Web users today are ultra-smart when it comes to security</h2>
 						<p>
 							In 2018, basically all web users are tech-savvy enough to know not to download random shit or give their social security number to some spam site. Problem is, what about legitimate software developers? Small online companies lose a great portion of their potential user base because their products appear "sketchy." You can't just put a padlock icon on your website - that tactic won't fool anyone. So what can software developers and webmasters do to convince people that their products/services are indeed no-scam, totally legit?
@@ -272,30 +277,30 @@
 						</p>
 					</div>
 				</div>
-				<div class="col-6 align-self-stretch" style="background-image: url('Stock2.jpeg');"></div>
+				<div class="col-md-6 align-self-stretch minnie" style="background-image: url('Stock2.jpeg');"></div>
 			</div>
 		</section>
-		<section class="py-5 bg-light">
+		<section class="pt-5 bg-light">
 			<div class="container">
 				<div class="row">
-					<div class="col-4 text-center">
+					<div class="col-md-4 text-center">
 						<img src="Smile.png" class='img-fluid mx-auto d-block mb-3'>
 						<h3>Convenient</h3>
-						<p class="lead mb-0">
+						<p class="lead mb-5">
 							Verifuse is so easy to use for developers!
 						</p>
 					</div>
-					<div class="col-4 text-center">
+					<div class="col-md-4 text-center">
 						<img src="Docs.png" class='img-fluid mx-auto d-block mb-3'>
 						<h3>Informative</h3>
-						<p class="lead mb-0">
+						<p class="lead mb-5">
 							People can click on the verified tag to read a comprehensive certificate that lists useful info about the verified product.
 						</p>
 					</div>
-					<div class='col-4 text-center'>
+					<div class='col-md-4 text-center'>
 						<img src="Check.png" class='img-fluid mx-auto d-block mb-3'>
 						<h3>Trusted</h3>
-						<p class="lead mb-0">
+						<p class="lead mb-5">
 							People recogonize Verifuse's "VERIFIED SAFE &amp; SECURE" shield as a symbol of trust.
 						</p>
 					</div>
@@ -409,7 +414,7 @@
 	  				<a href="#">Terms of Use</a>
 	  			</li>
 	  		</ul>
-	  		<p class="text-muted mb-0">&copy; Copyright Verifuse (8 August 2018)</p>
+	  		<p class="text-muted mb-0">&copy; Copyright Verifuse (8-August-2018)</p>
 	  	</div>
 	  </footer>
 	</body>
