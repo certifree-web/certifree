@@ -13,7 +13,7 @@
 
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
 
-		<link rel="stylesheet" href="user-styles-different-from-other-user-styles-missing-1-property.css">
+		<link rel="stylesheet" href="../user-styles-different-from-other-user-styles.css">
 
 		<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 
@@ -32,6 +32,9 @@
 				if (json.type === 'website') {
 					$('#filext-ciana').addClass('d-none');
 				}
+				$('#back-button').on('click', () => {
+					window.history.back();
+				});
 			});
 		</script>
 		<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -53,55 +56,89 @@
 		        a.appendChild(r);
 		    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 		</script>
+
+		<style type="text/css">
+			table {
+				table-layout: auto;
+			}
+			table, td {
+				width: auto !important;
+			}
+			td.no-breaks {
+				hyphens: none !important;
+			}
+			@media (min-width: 768px) {
+				.container {
+					max-width: 720px !important;
+				}
+			}
+		</style>
 	</head>
-	<body class="d-flex h-100 flex-column justify-content-center bg-light align-items-center">
-  	<div class="container text-center">
-  		<h1 class="display-1 my-5">
-  			<i class="fas fa-check-circle text-success"></i>
-	  		Verified
-	  	</h1>
-	  	<p class="lead mb-5">
-	  		<span class="ciana-name"></span> (<span class="ciana-uber"></span>) was confirmed to be 100% safe and secure through rigorous examination by a trusted authority.
-	  	</p>
-	  	<div class="card">
-			  <div class="card-header bg-white">
-			  	<h3 class="card-title">Server Identity</h3>
-			  	<p class="card-subtitle text-muted mb-0"><span class="ciana-name"></span> (<span class="ciana-uber"></span>) is guaranteed not to steal your data or harm your system.</p>
-			  </div>
-			  <div class="card-body">
-			    <table class="table table-borderless table-sm mb-0">
-			    	<tbody>
-				    	<tr>
-								<td class="text-right">Product:</td>
-							  <td class="ciana-type text-left"></td>
-							</tr>
-							<tr>
-							  <td class="text-right">Web Address:</td>
-							  <td class="ciana-address text-left"></td>
-							</tr>
-							<tr>
-							  <td class="text-right">Company/Developer:</td>
-							  <td class="ciana-company text-left"></td>
-							</tr>
-							<tr>
-							  <td class="text-right">Name:</td>
-							  <td class="ciana-name text-left"></td>
-							</tr>
-							<tr>
-							  <td class="text-right">Summary:</td>
-							  <td class="ciana-description text-left"></td>
-							</tr>
-							<tr id="filext-ciana">
-							  <td class="text-right">Filename:</td>
-							  <td class="ciana-file text-left"></td>
-							</tr>
-						</tbody>
-					</table>
-			  </div>
-			</div>
-  		<footer class="my-5 text-muted mb-0">
-  			Want your own software/website to have a verified certificate? Get it approved with <a href="https://verifuse.github.io">Verifuse Easy Web Security!</a>
-  		</footer>
-  	</div>
+	<body>
+		<button class="shadow btn-sm btn-secondary position-fixed" id="back-button" style="top: 1rem; left: 1rem; z-index: 99999;">
+  		<i class="fas fa-arrow-left"></i>&emsp;Back
+  	</button>
+  	<main style="min-height: 100vh;" class="d-flex flex-column justify-content-center bg-light align-items-center">
+	  	<div class="container text-center">
+	  		<h1 class="display-1 my-5">
+	  			<i class="fas fa-check-circle text-success"></i>
+		  		Verified
+		  	</h1>
+		  	<p class="lead mb-5">
+		  		<strong><span class="ciana-name"></span> (<span class="ciana-uber"></span>)</strong> was confirmed to be 100% safe and secure through rigorous examination/inspection by a trusted authority.
+		  	</p>
+		  	<div class="shadow-sm card collapse" id="advanced">
+				  <div class="card-header bg-white">
+				  	<h3 class="card-title">Server Identity Information</h3>
+				  	<p class="card-subtitle text-muted mb-0">
+				  		<strong><span class="ciana-name"></span> (<span class="ciana-uber"></span>)</strong> is guaranteed not to steal your data or harm your system.
+				  	</p>
+				  </div>
+				  <div class="card-body">
+				    <table class="table mx-auto table-borderless table-sm mb-0">
+				    	<tbody>
+					    	<tr>
+									<td class="text-right no-breaks">Product:</td>
+								  <td class="ciana-type text-left"></td>
+								</tr>
+								<tr>
+								  <td class="text-right no-breaks">Web Address:</td>
+								  <td class="ciana-address text-left"></td>
+								</tr>
+								<tr>
+								  <td class="text-right no-breaks">Distributor:</td>
+								  <td class="ciana-company text-left"></td>
+								</tr>
+								<tr>
+								  <td class="text-right no-breaks">Name:</td>
+								  <td class="ciana-name text-left"></td>
+								</tr>
+								<tr>
+								  <td class="text-right no-breaks">Summary:</td>
+								  <td class="ciana-description text-left"></td>
+								</tr>
+								<tr id="filext-ciana">
+								  <td class="text-right no-breaks">Filename:</td>
+								  <td class="ciana-file text-left"></td>
+								</tr>
+							</tbody>
+						</table>
+				  </div>
+				  <div class="card-footer bg-white">
+				  	<button class="shadow btn btn-lg btn-primary" data-toggle="collapse" data-target="#advanced, #toggler">
+				  		<i class="far fa-minus-square"></i>&emsp;Collapse Advanced
+				  	</button>
+				  </div>
+				</div>
+
+				<button class="shadow btn btn-primary btn-lg collapse show" id="toggler" data-toggle="collapse" data-target="#advanced, #toggler">
+					<i class="far fa-plus-square"></i>&emsp;Show Advanced
+				</button>
+
+	  		<footer class="my-5 text-muted mb-0">
+	  			Want your own software/website to have a verified certificate? Get it approved with <a href="https://verifuse.github.io" class="d-inline-block">Verifuse Easy Web Security!</a>
+	  		</footer>
+	  	</div>
+	  </main>
 	</body>
 </html>
