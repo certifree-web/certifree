@@ -81,7 +81,7 @@
 									<meta charset="UTF-8">
 									<style type="text/css">
 										html, body {
-											font-family: sans-serif;
+											font-family: "Helvetica Neue", sans-serif;
 											font-size: 17px;
 											color: #123;
 											font-weight: 300;
@@ -122,11 +122,14 @@
 											background: white;
 											padding: 3rem;
 										}
+										.andrea-omg-yes {
+											color: #28a745;
+										}
 									</style>
 								</head>
 								<body>
 									<main>
-										<h1>&#10004; Congratulations! We tested ${info.name} (${share(info)}) and confirmed that it was 100% safe. &#10004;</h1>
+										<h1><span class='andrea-omg-yes'>&#10004;</span> Congratulations! We tested ${info.name} (${share(info)}) and confirmed that it was 100% safe. <span class='andrea-omg-yes'>&#10004;</span></h1>
 										<p>
 											Here's the embed code for your EWS "VERIFIED SAFE &amp; SECURE" badge. Users are shown a full-page certificate when they click on the image.
 										</p>
@@ -149,8 +152,8 @@
 										</dl>
 										<hr>
 										<footer>
-											<p>
-												<em>Thanks for using Verifuse!</em>
+											<p class="andrea-omg-yes">
+												<em class="andrea-omg-yes">Thanks for using Verifuse!</em>
 											</p>
 											<small>If you have no clue about what this is, please ignore/disregard this e-mail. Someone probably gave us an incorrect address.</small>
 										</footer>
@@ -325,9 +328,9 @@
 					</div>
 				</div>
 				<div class="text-center pb-5" style="position: relative; top: -99999px;">
-					<div style="height: 99999px;"></div>
+					<div style="height: 99999px; pointer-events: none;"></div>
 					<a href="#formie" class="shadow btn btn-success btn-lg" style="position: -webkit-sticky; position: sticky; bottom: 1rem; z-index: 99999;">Get Started!</a>
-					<div style="margin-top: -99999px;"></div>
+					<div style="margin-top: -99999px; pointer-events: none;"></div>
 				</div>
 			</div>
 		</section>
@@ -362,10 +365,10 @@
 				<label class="form-label">What do you want us to verify?</label>
 			  <ul class="nav nav-tabs mb-0" role="tablist">
 			    <li class="nav-item">
-			    	<a class="nav-item nav-link active" id="a-tab" data-toggle="tab" href="#a" role="tab" aria-controls="nav-home">Website</a>
+			    	<a class="nav-item nav-link active" id="a-tab" data-toggle="tab" href="#a" role="tab" aria-controls="nav-home"><i class="fas fa-globe-africa"></i>&emsp;Website</a>
 			    </li>
 			    <li class="nav-item">
-			    	<a class="nav-item nav-link" id="b-tab" data-toggle="tab" href="#b" role="tab" aria-controls="nav-profile">Software</a>
+			    	<a class="nav-item nav-link" id="b-tab" data-toggle="tab" href="#b" role="tab" aria-controls="nav-profile"><i class="fas fa-download"></i>&emsp;Software</a>
 			    </li>
 			  </ul>
 				<div class="tab-content pt-3" id="nav-tabContent">
@@ -382,12 +385,16 @@
 								<input maxlength="100" type="text" class="form-control app-name" placeholder="Ex: Verifuse">
 							</div>
 							<div class="form-group">
-								<label class="form-label">WEBSITE URI</label>
-								<input maxlength="1000" type="url" class="form-control url" placeholder="Ex: https://www.example.com/directory/page.aspx">
-							</div>
-							<div class="form-group">
 								<label class="form-label">DESCRIPTION</label>
 								<textarea maxlength="500" rows="3" class="form-control summary" placeholder="Summarize what your website does in a few sentences."></textarea>
+
+								<small class="form-text text-muted">
+								  Maximum characters: 500
+								</small>
+							</div>
+							<div class="form-group">
+								<label class="form-label">WEBSITE URI</label>
+								<input maxlength="1000" type="url" class="form-control url" placeholder="Ex: https://www.example.com/directory/page.aspx">
 							</div>
 							<div class='text-center'>
 								<button type="button" class="shadow btn btn-lg btn-success action-send">Request Website Verification<span class="cogwheel d-none">&emsp;<i class="fa fa-cog fa-spin"></i></span></button>
@@ -412,6 +419,10 @@
 							<div class="form-group">
 								<label class="form-label">DESCRIPTION</label>
 								<textarea maxlength="500" rows="3" class="form-control summary" placeholder="Summarize what your software does in a few sentences."></textarea>
+
+								<small class="form-text text-muted">
+								  Maximum characters: 500
+								</small>
 							</div>
 							<div class="form-group">
 								<label class="form-label">FILENAME</label>
@@ -428,12 +439,12 @@
 		<section class="py-5">
 			<div class="container" style="margin-bottom: -1rem;">
 				<h2 class="text-center">Reviews</h2>
-				<div class="row">
+				<div class="row align-items-stretch">
 					<div class="col-md">
-						<div class="row">
-							<div class="col-sm">
-								<div class="shadow-sm card mb-3">
-  								<div class="card-body">
+						<div class="row h-100">
+							<div class="col-sm mb-3">
+								<div class="shadow-sm card mb-0 h-100 flex-column d-flex justify-content-center">
+  								<div class="card-body flex-grow-0">
 										<blockquote class="blockquote mb-0">
 										  <p>
 										  	Verifuse is cool!
@@ -445,9 +456,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm">
-								<div class="shadow-sm card mb-3">
-  								<div class="card-body">
+							<div class="col-sm mb-3">
+								<div class="shadow-sm card mb-0 h-100 flex-column d-flex justify-content-center">
+  								<div class="card-body flex-grow-0">
 										<blockquote class="blockquote mb-0">
 										  <p>
 										  	I'm a hacker!
@@ -462,10 +473,10 @@
 						</div>
 					</div>
 					<div class="col-md">
-						<div class="row">
-							<div class="col-sm">
-								<div class="shadow-sm card mb-3">
-  								<div class="card-body">
+						<div class="row h-100">
+							<div class="col-sm mb-3">
+								<div class="shadow-sm card mb-0 h-100 flex-column d-flex justify-content-center">
+  								<div class="card-body flex-grow-0">
 										<blockquote class="blockquote mb-0">
 										  <p>
 										  	Script kiddies rule!
@@ -477,9 +488,9 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm">
-								<div class="shadow-sm card mb-3">
-  								<div class="card-body">
+							<div class="col-sm mb-3">
+								<div class="shadow-sm card mb-0 h-100 flex-column d-flex justify-content-center">
+  								<div class="card-body flex-grow-0">
 										<blockquote class="blockquote mb-0">
 										  <p>
 										  	Tell your friends about Verifuse!
@@ -500,13 +511,13 @@
 	  	<div class="container">
 	  		<ul class="list-inline">
 	  			<li class="list-inline-item mr-3">
-	  				<a href="#">Contact Us</a>
+	  				<a href="#" class="classic">Contact Us</a>
 	  			</li>
 	  			<li class="list-inline-item mr-3">
-	  				<a href="#">Privacy Policy</a>
+	  				<a href="#" class="classic">Privacy Policy</a>
 	  			</li>
 	  			<li class="list-inline-item mr-0">
-	  				<a href="#">Terms of Use</a>
+	  				<a href="#" class="classic">Terms of Use</a>
 	  			</li>
 	  		</ul>
 	  		<p class="text-muted mb-0">&copy; Copyright Verifuse (8-August-2018)</p>
