@@ -182,6 +182,8 @@
 				.plg.container {
 					padding-left: 3rem;
 				}
+			}
+			@media (min-width: 992px) {
 				.prg.container {
 					padding-right: 3rem;
 				}
@@ -193,18 +195,25 @@
 					text-align: left !important;
 				}
 			}
+			@media (max-width: 991.98px) {
+				.col-lg-6 .container {
+					margin-left: auto !important;
+					margin-right: auto !important;
+					text-align: left !important;
+				}
+			}
 			@media (min-width: 768px) and (max-width: 991.98px) {
 				.col-md-6 .container {
 					max-width: 360px;
 				}
 			}
 			@media (min-width: 992px) and (max-width: 1199.98px) {
-				.col-md-6 .container {
+				.col-md-6 .container, .col-lg-6 .container {
 					max-width: 480px;
 				}
 			}
 			@media (min-width: 1200px) {
-				.col-md-6 .container {
+				.col-md-6 .container, .col-lg-6 .container {
 					max-width: 570px;
 				}
 			}
@@ -276,10 +285,11 @@
 			 </div>
 		</header>
 		<section>
-			<div class="row no-gutters d-flex align-items-center flex-row-reverse">
+			<div class="row no-gutters d-flex align-items-center flex-row-reverse bg-light">
+				<!--THANK YOU BOOTSTRAP: bg-light only affects background-color, so you can still overlay background-images-->
 				<div class='col-md-6'>
 					<div class='container ml-0 plg pt-5 pb-5 text-right'>
-						<h1 class='display-4'>Prove to your customers that your services are safe</h1>
+						<h1 class='display-4 mb-3' style='font-size: 3rem !important;'>Prove to your customers that your services are safe</h1>
 						<p class="lead">
 							Verifuse is the simplest online product verification system out there!
 						</p>
@@ -288,18 +298,55 @@
 				<div class="col-md-6 align-self-stretch minnie" style="background-image: url('Stock1.jpg');"></div>
 			</div>
 			<div class="row no-gutters d-flex align-items-center">
-				<div class='col-md-6'>
+				<div class='col-lg-6'>
 					<div class='container mr-0 prg pt-5 pb-5 text-left'>
-						<h2>Web users today are ultra-smart when it comes to security</h2>
+						<h2 class="mb-3">Web users today are ultra-smart when it comes to security</h2>
 						<p>
 							In 2018, basically all web users are tech-savvy enough to know not to download random shit or give their social security number to some spam site. Problem is, what about legitimate software developers? Small online companies lose a great portion of their potential user base because their products appear "sketchy." You can't just put a padlock icon on your website - that tactic won't fool anyone. So what can software developers and webmasters do to convince people that their products/services are indeed no-scam, totally legit?
 						</p>
-						<p>
+						<p class="collapse" id="text-toggle-1">
 							Introducing Verifuse! We'll check your website/application for malware and scams. If we don't find any bad stuff, we'll give you a verified, confirmed security certificate that you can stick on your website. Your customers will see that badge and think, "This shit is safe AF! I'm going to check it out." Verifuse is kind of like those "USDA Approved Organic" seals on food. People are more likely to buy when they know something is safe.
+						</p>
+						<p class="text-center mb-0">
+							<a class="btn btn-link classic" href="#text-toggle-1" data-toggle="collapse">Read more...</a>
 						</p>
 					</div>
 				</div>
-				<div class="col-md-6 align-self-stretch minnie" style="background-image: url('Stock2.jpeg');"></div>
+				<div class="col-lg-6 align-self-stretch minnie" style="background-image: url('Stock2.jpeg');"></div>
+			</div>
+			<div class="row no-gutters d-flex align-items-center flex-row-reverse">
+				<div class='col-lg-6'>
+					<div class='container ml-0 plg pt-5 pb-5 text-right'>
+						<h2 class="mb-3">Why you'll fail without Verifuse</h2>
+						<p>
+							A young programmer made a browser extension and posted it on Reddit. Unfortunately, no one downloaded it.
+						</p>
+						<div class="collapse" id="text-toggle-2">
+							<p>
+								This is a comment that another Redditor posted in response to the extension:
+							</p>
+							<div class="shadow-sm card mb-3">
+								<div class="card-body">
+									<blockquote class="blockquote mb-0">
+									  <p class="text-left">
+									  	Sorry, but I think most users on this sub know better than to download random zip files and extract them with not even a hint as to what the code <em>claims</em> to do
+									  </p>
+									  <footer class="blockquote-footer text-right">
+									  	Joshx5
+									  </footer>
+									</blockquote>
+								</div>
+							</div>
+							<p>
+								Ya see, that's the shitty reality of being a solo programmer. You make cool creations, but no one trusts you. I bet that lots of people would've downloaded his app if he got it verified with Verifuse - for free! When we declare software to be safe and secure, it probably is.
+							</p>
+						</div>
+						<p class="text-center mb-0">
+							<a class="btn btn-link classic" href="#text-toggle-2" data-toggle="collapse">Read more...</a>
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-6 align-self-stretch minnie" style="background-image: url('Stock3.jpg');"></div>
 			</div>
 		</section>
 		<section class="pt-5 bg-light">
@@ -327,16 +374,16 @@
 						</p>
 					</div>
 				</div>
-				<div class="text-center pb-5" style="position: relative; top: -99999px;">
+				<div class="text-center" style="position: relative; top: -99999px; pointer-events: none; margin-bottom: -99999px;">
 					<div style="height: 99999px; pointer-events: none;"></div>
-					<a href="#formie" class="shadow btn btn-success btn-lg" style="position: -webkit-sticky; position: sticky; bottom: 1rem; z-index: 99999;">Get Started!</a>
-					<div style="margin-top: -99999px; pointer-events: none;"></div>
+					<a href="#formie" class="shadow btn btn-success btn-lg" style="position: -webkit-sticky; position: sticky; bottom: 1rem; z-index: 99999; pointer-events: initial;">Get Started!</a>
 				</div>
+				<div style="height: 3rem !important;">&nbsp;</div>
 			</div>
 		</section>
 		<section class="py-5 bg-success text-white">
 			<div class="container">
-				<h2 class="text-center">How it works</h2>
+				<h2 class="text-center mb-3">How it works</h2>
 				<ol>
 					<li>You enter your product's details and your e-mail address in the form below.</li>
 					<li>You press submit.</li>
@@ -352,7 +399,7 @@
 		</section>
 		<section class='bg-light py-5' id="formie">
 			<div class="container">
-				<h2 class="text-center">Try it free</h2>
+				<h2 class="text-center mb-3">Try it free</h2>
 				<form method="GET" action="#">
 					<div class="form-group">
 						<label class="form-label">YOUR E-MAIL ADDRESS</label>
@@ -438,7 +485,7 @@
 		</section>
 		<section class="py-5">
 			<div class="container" style="margin-bottom: -1rem;">
-				<h2 class="text-center">Reviews</h2>
+				<h2 class="text-center mb-3">Reviews</h2>
 				<div class="row align-items-stretch">
 					<div class="col-md">
 						<div class="row h-100">
@@ -446,7 +493,7 @@
 								<div class="shadow-sm card mb-0 h-100 flex-column d-flex justify-content-center">
   								<div class="card-body flex-grow-0">
 										<blockquote class="blockquote mb-0">
-										  <p>
+										  <p class="text-left">
 										  	Verifuse is cool!
 										  </p>
 										  <footer class="blockquote-footer text-right">
@@ -460,7 +507,7 @@
 								<div class="shadow-sm card mb-0 h-100 flex-column d-flex justify-content-center">
   								<div class="card-body flex-grow-0">
 										<blockquote class="blockquote mb-0">
-										  <p>
+										  <p class="text-left">
 										  	I'm a hacker!
 										  </p>
 										  <footer class="blockquote-footer text-right">
@@ -478,7 +525,7 @@
 								<div class="shadow-sm card mb-0 h-100 flex-column d-flex justify-content-center">
   								<div class="card-body flex-grow-0">
 										<blockquote class="blockquote mb-0">
-										  <p>
+										  <p class="text-left">
 										  	Script kiddies rule!
 										  </p>
 										  <footer class="blockquote-footer text-right">
@@ -492,7 +539,7 @@
 								<div class="shadow-sm card mb-0 h-100 flex-column d-flex justify-content-center">
   								<div class="card-body flex-grow-0">
 										<blockquote class="blockquote mb-0">
-										  <p>
+										  <p class="text-left">
 										  	Tell your friends about Verifuse!
 										  </p>
 										  <footer class="blockquote-footer text-right">
