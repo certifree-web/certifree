@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<title>Verifuse - Verify Your Website(s)/Software</title>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=0.9, shrink-to-fit=no">
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=0.9, shrink-to-fit=no, user-scalable=yes">
 		<meta name="description" content="Newbie developers struggle to convince people to download/install their software because nobody trusts that it's not malware. Verifuse gives out certificates that say your stuff is confirmed virus-free!">
 		<meta name="robots" content="index">
 
@@ -31,11 +31,11 @@
       	autoSizers.css('min-height', (index, value) => {
       		return Math.round($(autoSizers.get(index)).width() / 2) + 'px';
       	});
+      	window.setTimeout(resize, 100);
       }
 
 			$(document).ready(() => {
 				resize();
-				$(window).on('resize', resize);
 
 				$('.action-send').on('click', (event) => {
 					var pressedButton = $(event.target);
@@ -180,12 +180,12 @@
 			}
 			@media (min-width: 768px) {
 				.plg.container {
-					padding-left: 3rem;
+					padding-left: 3rem !important;
 				}
 			}
 			@media (min-width: 992px) {
 				.prg.container {
-					padding-right: 3rem;
+					padding-right: 3rem !important;
 				}
 			}
 			@media (max-width: 767.98px) {
@@ -204,17 +204,17 @@
 			}
 			@media (min-width: 768px) and (max-width: 991.98px) {
 				.col-md-6 .container {
-					max-width: 360px;
+					max-width: 360px !important;
 				}
 			}
 			@media (min-width: 992px) and (max-width: 1199.98px) {
 				.col-md-6 .container, .col-lg-6 .container {
-					max-width: 480px;
+					max-width: 480px !important;
 				}
 			}
 			@media (min-width: 1200px) {
 				.col-md-6 .container, .col-lg-6 .container {
-					max-width: 570px;
+					max-width: 570px !important;
 				}
 			}
 		</style>
@@ -245,7 +245,7 @@
 		      <div class="modal-header">
 		        <h5 class="modal-title">Houston, we've had a problem!</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+		          <span aria-hidden="true"><i class="far fa-fw fa-times-circle"></i></span>
 		        </button>
 		      </div>
 		      <div class="modal-body">
@@ -263,7 +263,7 @@
 		      <div class="modal-header">
 		        <h5 class="modal-title">What's up?</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true"><i class="far fa-times-circle"></i></span>
+		          <span aria-hidden="true"><i class="far fa-fw fa-times-circle"></i></span>
 		        </button>
 		      </div>
 		      <div class="modal-body">
@@ -278,7 +278,7 @@
 		<header class="navbar navbar-dark bg-success text-white px-0">
 			<div class="container d-flex justify-content-center">
 			  <span class="navbar-brand">
-			    <i class="fas fa-check-circle"></i>
+			    <i class="fas fa-fw fa-check-circle"></i>
 			    <strong>Verifuse</strong>
 			    Easy Web Security
 			  </span>
@@ -308,7 +308,7 @@
 							Introducing Verifuse! We'll check your website/application for malware and scams. If we don't find any bad stuff, we'll give you a verified, confirmed security certificate that you can stick on your website. Your customers will see that badge and think, "This shit is safe AF! I'm going to check it out." Verifuse is kind of like those "USDA Approved Organic" seals on food. People are more likely to buy when they know something is safe.
 						</p>
 						<p class="text-center mb-0">
-							<a class="btn btn-link classic" href="#text-toggle-1" data-toggle="collapse">Read more...</a>
+							<a class="classic" href="#text-toggle-1" data-toggle="collapse">Read more...</a>
 						</p>
 					</div>
 				</div>
@@ -342,7 +342,7 @@
 							</p>
 						</div>
 						<p class="text-center mb-0">
-							<a class="btn btn-link classic" href="#text-toggle-2" data-toggle="collapse">Read more...</a>
+							<a class="classic" href="#text-toggle-2" data-toggle="collapse">Read more...</a>
 						</p>
 					</div>
 				</div>
@@ -410,12 +410,12 @@
 					</div>
 				</form>
 				<label class="form-label">What do you want us to verify?</label>
-			  <ul class="nav nav-tabs mb-0" role="tablist">
+			  <ul class="nav nav-tabs nav-fill mb-0" role="tablist">
 			    <li class="nav-item">
-			    	<a class="nav-item nav-link active" id="a-tab" data-toggle="tab" href="#a" role="tab" aria-controls="nav-home"><i class="fas fa-globe-africa"></i>&emsp;Website</a>
+			    	<a class="nav-item nav-link active" id="a-tab" data-toggle="tab" href="#a" role="tab" aria-controls="nav-home"><i class="fas fa-fw fa-globe-africa"></i>&emsp;Website</a>
 			    </li>
 			    <li class="nav-item">
-			    	<a class="nav-item nav-link" id="b-tab" data-toggle="tab" href="#b" role="tab" aria-controls="nav-profile"><i class="fas fa-download"></i>&emsp;Software</a>
+			    	<a class="nav-item nav-link" id="b-tab" data-toggle="tab" href="#b" role="tab" aria-controls="nav-profile"><i class="fas fa-fw fa-download"></i>&emsp;Software</a>
 			    </li>
 			  </ul>
 				<div class="tab-content pt-3" id="nav-tabContent">
@@ -485,35 +485,29 @@
 		</section>
 		<section class="py-5">
 			<div class="container" style="margin-bottom: -1rem;">
-				<h2 class="text-center mb-3">Reviews</h2>
+				<h2 class="text-center mb-3">Recently Verified Products</h2>
 				<div class="row align-items-stretch">
 					<div class="col-md">
 						<div class="row h-100">
 							<div class="col-sm mb-3">
 								<div class="shadow-sm card mb-0 h-100 flex-column d-flex justify-content-center">
-  								<div class="card-body flex-grow-0">
-										<blockquote class="blockquote mb-0">
-										  <p class="text-left">
-										  	Verifuse is cool!
-										  </p>
-										  <footer class="blockquote-footer text-right">
-										  	Some cool kid
-										  </footer>
-										</blockquote>
+  								<img class="card-img-top flex-grow-0" src="https://i.stack.imgur.com/bIbrO.jpg">
+  								<div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-center">
+										<h5 class="card-title">
+											<span class="d-inline-block text-left">StackPromo (online)</span>
+										</h5>
+										<a href="/certification" class="card-link classic">View Certificate</a>
 									</div>
 								</div>
 							</div>
 							<div class="col-sm mb-3">
 								<div class="shadow-sm card mb-0 h-100 flex-column d-flex justify-content-center">
-  								<div class="card-body flex-grow-0">
-										<blockquote class="blockquote mb-0">
-										  <p class="text-left">
-										  	I'm a hacker!
-										  </p>
-										  <footer class="blockquote-footer text-right">
-										  	Another cool kid
-										  </footer>
-										</blockquote>
+  								<img class="card-img-top flex-grow-0" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRj9DHAseUNsmHHI_B5mzLywRBDRxx3Wydf0nlQiBQ_6GXrXSBR">
+  								<div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-center">
+										<h5 class="card-title">
+											<span class="d-inline-block text-left">SPECIMEN.ZIP (app)</span>
+										</h5>
+										<a href="/certification" class="card-link classic">View Certificate</a>
 									</div>
 								</div>
 							</div>
@@ -523,29 +517,23 @@
 						<div class="row h-100">
 							<div class="col-sm mb-3">
 								<div class="shadow-sm card mb-0 h-100 flex-column d-flex justify-content-center">
-  								<div class="card-body flex-grow-0">
-										<blockquote class="blockquote mb-0">
-										  <p class="text-left">
-										  	Script kiddies rule!
-										  </p>
-										  <footer class="blockquote-footer text-right">
-										  	Still yet another cool kid
-										  </footer>
-										</blockquote>
+  								<img class="card-img-top flex-grow-0" src="https://cdn.worldvectorlogo.com/logos/google-chrome-1.svg">
+  								<div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-center">
+										<h5 class="card-title">
+											<span class="d-inline-block text-left">Stack Exchange Downvoter Pro Tools 2 (extension)</span>
+										</h5>
+										<a href="/certification" class="card-link classic">View Certificate</a>
 									</div>
 								</div>
 							</div>
 							<div class="col-sm mb-3">
 								<div class="shadow-sm card mb-0 h-100 flex-column d-flex justify-content-center">
-  								<div class="card-body flex-grow-0">
-										<blockquote class="blockquote mb-0">
-										  <p class="text-left">
-										  	Tell your friends about Verifuse!
-										  </p>
-										  <footer class="blockquote-footer text-right">
-										  	A smuggling scammer
-										  </footer>
-										</blockquote>
+  								<img class="card-img-top flex-grow-0" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Pornhub-logo.svg/2000px-Pornhub-logo.svg.png">
+  								<div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-center">
+										<h5 class="card-title">
+											<span class="d-inline-block text-left">PornHub (online)</span>
+										</h5>
+										<a href="/certification" class="card-link classic">View Certificate</a>
 									</div>
 								</div>
 							</div>
