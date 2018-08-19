@@ -16,6 +16,7 @@
 	letter-spacing: -0.01em; /* DO NOT USE rem HERE. MUST USE em FOR IT TO WORK RIGHT! */
 	word-spacing: 0.01em; /* DO NOT USE rem HERE. MUST USE em FOR IT TO WORK RIGHT! */
 	font-variant-numeric: proportional-nums;
+	-webkit-text-size-adjust: none;
 }
 /* USER STYLES */
 a.classic {
